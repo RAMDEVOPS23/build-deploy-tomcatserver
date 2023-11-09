@@ -5,7 +5,7 @@ pipeline {
 }
 
     tools{
-        maven 'Apache Maven 3.6.3'
+        maven 'Apache Maven 3.2.5'
     }
     options {
   buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '2')
@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Clone the repository') {
             steps {
-               git credentialsId: 'Github_username_password', url: 'https://github.com/mmbabu1988/build-deploy.git'
+               git credentialsId: 'Github_username_password', url: 'https://github.com/RAMDEVOPS23/build-deploy-tomcatserver.git'
             }
         }
 
@@ -28,7 +28,7 @@ pipeline {
 
 stage('Deploy to tomcat') {
             steps {
-            deploy adapters: [tomcat8(credentialsId: 'tomcat-cred', path: '', url: 'http://3.7.70.234:9090/')], contextPath: null, war: '**/*.war'
+            deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', path: '', url: 'http://3.88.28.53:9090//')], contextPath: null, war: '**/*.war'
                  }
     }
 }
